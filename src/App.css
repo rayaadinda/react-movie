@@ -1,0 +1,230 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,600;1,600&display=swap");
+
+body {
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: rgb(0, 0, 0);
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.Movie-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.Movie-wrapper {
+  width: 250px;
+  border-radius: 10px;
+  background-color: white;
+  color: black;
+}
+
+.Movie-search {
+  position: absolute;
+  top: 10px;
+  left: 1000px;
+  transform: translate(-50%);
+  height: 10px;
+  font-size: 14px;
+  padding: 16px;
+  width: 300px;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.8); /* Add a semi-transparent background */
+  z-index: 1; /* Ensure the search input is above the cover image */
+}
+
+.Movie-title {
+  height: 60px;
+  margin-top: -10px;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 18px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: left;
+}
+
+.Movie-date {
+  margin-top: -58px;
+  margin-bottom: 12px;
+  font-style: italic;
+  font-size: 18px;
+  text-align: left;
+  padding: 10px;
+}
+
+.Movie-rate {
+  color: red;
+  margin-bottom: 24px;
+  font-weight: bold;
+  font-size: 0.8em;
+  text-decoration: underline;
+}
+
+.Movie-image {
+  width: 230px;
+  border-radius: 10px;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  height: 500px;
+  width: 500px;
+  position: relative;
+}
+
+.modal img {
+  width: 120px;
+  border-radius: 10px;
+  margin-top: 10px;
+  justify-content: left;
+  display: flex;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 40px;
+  cursor: pointer;
+  color: #333;
+  display: flex;
+  justify-content: right;
+}
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.modal-overlay p {
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: left ;
+  color: black;
+  text-align: left;
+}
+
+.modal-header h2 {
+  color: black;
+  font-size: 30px;
+}
+.carousel-image {
+  border-radius: 5px;
+  max-width: 500px; /* Set the maximum width to 100% for responsiveness */
+  max-height: 300px; /* Set the maximum height as needed */
+  object-fit: cover; /* Maintain aspect ratio and cover the container */
+}
+
+
+.carousel {
+  max-width: 500px; 
+  margin: auto; 
+  overflow: hidden;
+
+  
+}
+
+
+.carousel .carousel-image {
+  max-width: 100%; 
+  max-height: 500px; 
+  object-fit: cover; 
+  margin-top: 20px;
+
+}
+
+
+.carousel .control-prev, .carousel .control-next {
+  font-size: 2em; 
+  width: auto; 
+  margin: 0 10px;   
+  background: none;
+}
+
+.carousel-title-overlay {
+  color: black;
+}
+
+
+
+.Movie-wrapper {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+}
+
+.Movie-wrapper:hover {
+  transform: scale(1.05);
+}
+
+.Movie-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.Movie-wrapper:hover .Movie-image {
+  transform: scale(1.1);
+}
+
+.Movie-title {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 10px;
+  box-sizing: border-box;
+  margin: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.Movie-wrapper:hover .Movie-title {
+  opacity: 1;
+}
