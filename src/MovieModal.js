@@ -1,4 +1,3 @@
-// MovieModal.js
 import React from 'react';
 
 const MovieModal = ({ movie, onClose }) => {

@@ -48,8 +48,8 @@ body {
   padding: 16px;
   width: 300px;
   border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.8); /* Add a semi-transparent background */
-  z-index: 1; /* Ensure the search input is above the cover image */
+  background-color: rgba(255, 255, 255, 0.8);
+  z-index: 1; 
 }
 
 .Movie-title {
@@ -153,12 +153,10 @@ body {
 }
 .carousel-image {
   border-radius: 5px;
-  max-width: 500px; /* Set the maximum width to 100% for responsiveness */
-  max-height: 300px; /* Set the maximum height as needed */
-  object-fit: cover; /* Maintain aspect ratio and cover the container */
+  max-width: 500px; 
+  max-height: 300px; 
+  object-fit: cover; 
 }
-
-
 .carousel {
   max-width: 500px; 
   margin: auto; 
@@ -166,8 +164,6 @@ body {
 
   
 }
-
-
 .carousel .carousel-image {
   max-width: 100%; 
   max-height: 500px; 
@@ -175,8 +171,6 @@ body {
   margin-top: 20px;
 
 }
-
-
 .carousel .control-prev, .carousel .control-next {
   font-size: 2em; 
   width: auto; 
@@ -188,29 +182,23 @@ body {
   color: black;
 }
 
-
-
 .Movie-wrapper {
   position: relative;
   overflow: hidden;
   transition: transform 0.3s ease-in-out;
 }
-
 .Movie-wrapper:hover {
   transform: scale(1.05);
 }
-
 .Movie-image {
   width: 100%;
   height: auto;
   border-radius: 10px;
   transition: transform 0.3s ease-in-out;
 }
-
 .Movie-wrapper:hover .Movie-image {
   transform: scale(1.1);
 }
-
 .Movie-title {
   position: absolute;
   bottom: 0;
@@ -224,7 +212,6 @@ body {
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
 }
-
 .Movie-wrapper:hover .Movie-title {
   opacity: 1;
 }

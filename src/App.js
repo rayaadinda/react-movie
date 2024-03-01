@@ -1,5 +1,5 @@
 import './App.css';
-import React, { Component, useEffect, useState } from 'react';
+import React, {useEffect, useState } from 'react';
 import { getMovieList, searchMovie } from './api';
 import MovieModal from './MovieModal';
 import { Carousel } from 'react-responsive-carousel';
@@ -39,7 +39,9 @@ const App = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={require('./img/Component 1.png')}/>
+      {searchQuery === '' && (
+        <img src={require('./img/Component 1.png')} alt="cover" />
+      )}
         <input
           placeholder="Search a Movie"
           className="Movie-search"
