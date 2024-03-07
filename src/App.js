@@ -10,6 +10,7 @@ const App = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedMovie, setSelectedMovie] = useState(null);
 
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -50,7 +51,8 @@ const App = () => {
        
 
         {searchQuery === '' && ( 
-          <Carousel  showStatus={false} showArrows={false} infiniteLoop={true} autoPlay={true} interval={2000} stopOnHover={false}>
+          <Carousel  
+          showStatus={false} showArrows={false} infiniteLoop={true} autoPlay={true} interval={2000} stopOnHover={false}>
             {popularMovies.slice(0, 10).map((movie) => (
               <div key={movie.id} className="carousel-item">
                 <img
@@ -63,8 +65,8 @@ const App = () => {
                 </div>
               </div>
             ))}
-          </Carousel>
-        )}
+          </Carousel> 
+        )} 
       </header>
 
         <main className="Movie-container">

@@ -22,7 +22,3 @@ export const searchMovie = async (query) => {
     throw error;
   }
 };
-
-
-
-
