@@ -1,33 +1,49 @@
 import './App.css';
-import React, {useEffect, useState } from 'react';
-import { getMovieList, searchMovie } from './api';
+import React, { useEffect, useState } from 'react';
+import { getMovieList, searchMovie, getTrendingMovies, getPopularMoviesThisWeek } from './api'; // Assuming you have these API functions
 import MovieModal from './MovieModal';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 const App = () => {
-  const [popularMovies, setPopularMovies] = useState([]);
+  const [activeTab, setActiveTab] = useState('popular'); // Default to 'popular'
+  const [movies, setMovies] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedMovie, setSelectedMovie] = useState(null);
-
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        let result;
         if (searchQuery) {
-          const result = await searchMovie(searchQuery);
-          setPopularMovies(result);
+          result = await searchMovie(searchQuery);
         } else {
-          const result = await getMovieList();
-          setPopularMovies(result);
+          switch (activeTab) {
+            case 'trending':
+              result = await getTrendingMovies();
+              break;
+            case 'popular':
+              result = await getMovieList();
+              break;
+            case 'popularThisWeek':
+              result = await getPopularMoviesThisWeek();
+              break;
+            default:
+              result = [];
+          }
         }
+        setMovies(result);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
     };
 
     fetchData();
-  }, [searchQuery]);
+  }, [activeTab, searchQuery]);
+
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
+  };
 
   const handleMovieClick = (movie) => {
     setSelectedMovie(movie);
@@ -40,56 +56,53 @@ const App = () => {
   return (
     <div className="App">
       <header className="App-header">
-      {searchQuery === '' && (
-        <img src={require('./img/Component 1.png')} alt="cover" />
-      )}
         <input
           placeholder="Search a Movie"
           className="Movie-search"
           onChange={({ target }) => setSearchQuery(target.value)}
         />
-       
-
-        {searchQuery === '' && ( 
-          <Carousel  
-          showStatus={false} showArrows={false} infiniteLoop={true} autoPlay={true} interval={2000} stopOnHover={false}>
-            {popularMovies.slice(0, 10).map((movie) => (
-              <div key={movie.id} className="carousel-item">
-                <img
-                  className="carousel-image"
-                  src={`${process.env.REACT_APP_BASEIMGURL}/${movie.backdrop_path}`}
-                  alt={movie.title}
-                />
-                <div className="carousel-title-overlay">
-                  <h2>{movie.title}</h2>
-                </div>
-              </div>
-            ))}
-          </Carousel> 
-        )} 
+        <div className="Tabs">
+          <button
+            className={activeTab === 'trending' ? 'active' : ''}
+            onClick={() => handleTabChange('trending')}
+          >
+            Trending
+          </button>
+          <button
+            className={activeTab === 'popular' ? 'active' : ''}
+            onClick={() => handleTabChange('popular')}
+          >
+            Popular
+          </button>
+          <button
+            className={activeTab === 'popularThisWeek' ? 'active' : ''}
+            onClick={() => handleTabChange('popularThisWeek')}
+          >
+            Popular This Week
+          </button>
+        </div>
       </header>
 
-        <main className="Movie-container">
-          {popularMovies.map((movie, i) => (
-            <div
-              className="Movie-wrapper"
-              key={i}
-              onClick={() => handleMovieClick(movie)}
-            >
-              
-              <img
-                className="Movie-image"
-                src={`${process.env.REACT_APP_BASEIMGURL}/${movie.poster_path}`}
-                alt={movie.title}
-              />
-              <div className="Movie-title">{movie.title}</div>
-            </div>
-          ))}
-        </main>
+      <main className="Movie-container">
+        {movies.map((movie, i) => (
+          <div
+            className="Movie-wrapper"
+            key={i}
+            onClick={() => handleMovieClick(movie)}
+          >
+            <img
+              className="Movie-image"
+              src={`${process.env.REACT_APP_BASEIMGURL}/${movie.poster_path}`}
+              alt={movie.title}
+            />
+            <div className="Movie-title">{movie.title}</div>
+          </div>
+        ))}
+      </main>
 
-        {selectedMovie && (
-          <MovieModal movie={selectedMovie} onClose={handleCloseModal} />
-        )}
+      {selectedMovie && (
+        <MovieModal movie={selectedMovie} onClose={handleCloseModal} />
+      )}
     </div>
   );
 };
